@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>E-commerce application</title>
+
+<!-- Bootstrap CSS  & FontAwsome-->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="font-awesome/css1/all.css" rel="stylesheet">
+<link rel="icon" href="images/icon.png" />
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="style4.css">
+<script type="text/javascript" src="font-awesome/js1/fontawesome.js"></script>
+<script type="text/javascript" src=""></script>
+
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar  -->
+		<nav  th:fragment="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<h3>&nbsp;&nbsp;&nbsp;E-c App</h3>
+				<strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
+			</div>
+			<ul class="list-unstyled components">
+				<li class="active"><a href="#homeSubmenu"
+					data-toggle="collapse" aria-expanded="false"
+					class="dropdown-toggle"> <i class="fas fa-home"></i> Home
+				</a>
+					<ul class="collapse list-unstyled" id="homeSubmenu">
+						<li><a href="#">My cart</a></li>
+						<li><a href="#">My wishlist</a></li>
+					</ul></li>
+				<li><a href="#"> <i class="fas fa-briefcase"></i> About
+				</a> <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+					class="dropdown-toggle"> <i class="fas fa-copy"></i> pages
+				</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu">
+						<li><a href="#">category</a></li>
+						<li><a href="#">products</a></li>
+						<li><a href="#">more</a></li>
+					</ul></li>
+				<li><a href="#"> <i class="fas fa-image"></i> Portfolio
+				</a></li>
+				<li><a href="#"> <i class="fas fa-question"></i> FAQ
+				</a></li>
+				<li><a href="#"> <i class="fas fa-paper-plane"></i> Contact
+				</a></li>
+			</ul>
+		</nav>
+
+		<!-- Page Content  -->
+		<div id="content">
+			<nav th:fragment="sidebar" class="navbar navbar-expand-lg navbar-light"
+				style="border-bottom: 4px solid #7386D5;">
+				<div class="container-fluid">
+					<button type="button" id="sidebarCollapse"
+						class="btn btn-info mr-4">
+						<i class="fas fa-align-left"></i>
+						<!-- <span>Toggle Sidebar</span> -->
+					</button>
+					<form class="form-inline frm">
+						<input class="form-control mr-sm-2" type="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
+					<button class="btn btn-light d-inline-block d-lg-none ml-auto"
+						type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<i class="fas fa-align-justify"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="nav navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link fl mr-4 btn btn-light" href="#">
+									<i class="fa fa-shopping-cart" title="View Cart"
+									style="color: red;"></i><span class="label">10</span>
+							</a></li>
+							<li class="nav-item  active"><a class="nav-link btn btn-light mr-2" href="#"
+								onclick="handleAddProduct(event);">add Product</a></li>
+							<li class="nav-item"><a onclick=" handleListProduct(event);" class="nav-link btn btn-light mr-2" href="#">Products</a></li>
+							<li class="nav-item"><a class="nav-link btn btn-light" href="#">Category</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="line"></div>
+			<div class="container" id="app">
+				
+				
+				
+			 </div>
+			<div class="line"></div>
+		</div>
+	</div>
+	<!-- Bootstrap JS & jQuery -->
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Popper.JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+		integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="api/ajaxFetch.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
+</body>
+</html>

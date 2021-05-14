@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>E-commerce application</title>
+
+<!-- Bootstrap CSS  & FontAwsome-->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="font-awesome/css1/all.css" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<link rel="icon" href="images/icon.png" />
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="style4.css">
+<link rel="stylesheet" href="card.css">
+<script type="text/javascript" src="font-awesome/js1/fontawesome.js"></script>
+<script type="text/javascript" src=""></script>
+
+</head>
+<body>
+	<div class="wrapper">
+		<!-- Sidebar  -->
+		<nav th:fragment="sidebar" id="sidebar">
+			<div class="sidebar-header">
+				<h3>&nbsp;&nbsp;&nbsp;E-c App</h3>
+				<strong><i class="fa fa-shopping-cart" aria-hidden="true"></i></strong>
+			</div>
+
+			<ul class="list-unstyled components">
+				<li class="active"><a href="#homeSubmenu"
+					data-toggle="collapse" aria-expanded="false"
+					class="dropdown-toggle"> <i class="fas fa-home"></i> Home
+				</a>
+					<ul class="collapse list-unstyled" id="homeSubmenu">
+						<li><a href="#">My cart</a></li>
+						<li><a href="#">My wishlist</a></li>
+					</ul></li>
+				<li><a href="#"> <i class="fas fa-briefcase"></i> About
+				</a> <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+					class="dropdown-toggle"> <i class="fas fa-copy"></i> pages
+				</a>
+					<ul class="collapse list-unstyled" id="pageSubmenu">
+						<li><a href="#">category</a></li>
+						<li><a href="#">products</a></li>
+						<li><a href="#">more</a></li>
+					</ul></li>
+				<li><a href="#"> <i class="fas fa-image"></i> Portfolio
+				</a></li>
+				<li><a href="#"> <i class="fas fa-question"></i> FAQ
+				</a></li>
+				<li><a href="#"> <i class="fas fa-paper-plane"></i> Contact
+				</a></li>
+			</ul>
+		</nav>
+
+		<!-- Page Content  -->
+		<div id="content">
+			<nav th:fragment="sidebar"
+				class="navbar navbar-expand-lg navbar-light"
+				style="border-bottom: 4px solid #7386D5;">
+				<div class="container-fluid">
+					<button type="button" id="sidebarCollapse"
+						class="btn btn-info mr-4">
+						<i class="fas fa-align-left"></i>
+						<!-- <span>Toggle Sidebar</span> -->
+					</button>
+					<form class="form-inline frm">
+						<input class="form-control mr-sm-2" type="search"
+							placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
+					<button class="btn btn-light d-inline-block d-lg-none ml-auto"
+						type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<i class="fas fa-align-justify"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="nav navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link fl1" href="#"> <i
+									class="fas fa-cart-plus" title="View Cart"
+									style="color: red; font-size: 20px"></i><span class="label">10</span>
+							</a></li>
+							<li class="nav-item"><a class="nav-link fl2" href="#"> <i
+									class="fa fa-user" style="color: #17a2b8; font-size: 20px"></i>
+							</a></li>
+
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="line"></div>
+			<div class="container" id="app">
+
+				<div class="row g-2">
+					<div class="col-md-3">
+						<div class="accordion" id="accordionExample">
+							<div class="card">
+								<div class="card-header" id="headingOne">
+									<h2 class="mb-0">
+										<button
+											class="btn btn-link btn-block text-left text-uppercase"
+											type="button" data-toggle="collapse"
+											data-target="#collapseOne" aria-expanded="true"
+											aria-controls="collapseOne">Categories</button>
+									</h2>
+								</div>
+
+								<div id="collapseOne" class="collapse show"
+									aria-labelledby="headingOne" data-parent="#accordionExample">
+									<div class="card-body category">
+										<div class="t-products p-2">
+											<div class="p-lists">
+												<div class="d-flex justify-content-between mt-2">
+													<span>Laptops</span> <span>23</span>
+												</div>
+												<div class="d-flex justify-content-between mt-2">
+													<span>Desktops</span> <span>46</span>
+												</div>
+												<div class="d-flex justify-content-between mt-2">
+													<span>Monitors</span> <span>13</span>
+												</div>
+												<div class="d-flex justify-content-between mt-2">
+													<span>Mouse</span> <span>33</span>
+												</div>
+												<div class="d-flex justify-content-between mt-2">
+													<span>Keyboard</span> <span>12</span>
+												</div>
+												<div class="d-flex justify-content-between mt-2">
+													<span>Printer</span> <span>53</span>
+												</div>
+												<div class="d-flex justify-content-between mt-2">
+													<span>Mobiles</span> <span>203</span>
+												</div>
+												<div class="d-flex justify-content-between mt-2">
+													<span>CPU</span> <span>23</span>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="headingTwo">
+									<h2 class="mb-0">
+										<button
+											class="btn btn-link btn-block text-left collapsed text-uppercase"
+											type="button" data-toggle="collapse"
+											data-target="#collapseTwo" aria-expanded="false"
+											aria-controls="collapseTwo">Brands</button>
+									</h2>
+								</div>
+								<div id="collapseTwo" class="collapse"
+									aria-labelledby="headingTwo" data-parent="#accordionExample">
+									<div class="card-body category">
+										<div class="brand p-2">
+											<div class="d-flex justify-content-between mt-2">
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value=""
+														id="flexCheckDefault"> <label
+														class="form-check-label" for="flexCheckDefault">
+														Apple </label>
+												</div>
+												<span>13</span>
+											</div>
+											<div class="d-flex justify-content-between mt-2">
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value=""
+														id="flexCheckChecked" checked> <label
+														class="form-check-label" for="flexCheckChecked">
+														Asus </label>
+												</div>
+												<span>4</span>
+											</div>
+											<div class="d-flex justify-content-between mt-2">
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value=""
+														id="flexCheckChecked" checked> <label
+														class="form-check-label" for="flexCheckChecked">
+														Dell </label>
+												</div>
+												<span>24</span>
+											</div>
+											<div class="d-flex justify-content-between mt-2">
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value=""
+														id="flexCheckChecked" checked> <label
+														class="form-check-label" for="flexCheckChecked">
+														Lenovo </label>
+												</div>
+												<span>18</span>
+											</div>
+											<div class="d-flex justify-content-between mt-2">
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value=""
+														id="flexCheckChecked" checked> <label
+														class="form-check-label" for="flexCheckChecked">
+														Acer </label>
+												</div>
+												<span>44</span>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="headingThree">
+									<h2 class="mb-0">
+										<button
+											class="btn btn-link btn-block text-left collapsed text-uppercase"
+											type="button" data-toggle="collapse"
+											data-target="#collapseThree" aria-expanded="false"
+											aria-controls="collapseThree">Filters</button>
+									</h2>
+								</div>
+								<div id="collapseThree" class="collapse"
+									aria-labelledby="headingThree" data-parent="#accordionExample">
+									<div class="card-body">
+										<div class="type p-2 mb-2">
+
+											<div class="d-flex justify-content-between mt-2">
+												<form action="search" method="get">
+													<p class="text-uppercase">filtre by gategory</p>
+													<div class="mb-3">
+														<div class="form-group">
+															<input type="text" class="form-control-sm is-valid"
+																name="action" value="byCategoryCretiria" hidden="hidden" />
+
+															<input type="text" class="form-control-sm input-filter"
+																placeholder="category" id="exampleInputEmail1"
+																name="creteria" />
+														</div>
+													</div>
+
+													<button type="submit"
+														class="btn btn-outline-success btn-sm form-control">search</button>
+												</form>
+											</div>
+											<div class="d-flex justify-content-between mt-4">
+												<form action="search" method="get">
+													<p class="text-uppercase">fillter by price</p>
+													<div class="form-group">
+
+														<input type="text" class="form-control-sm input-filter"
+															name="action" hidden="hidden" value="Byprice" />
+														<div class="form-group">
+															<input type="number" class="form-control-sm input-filter"
+																name="price" placeholder="price" />
+														</div>
+
+													</div>
+													<button type="submit"
+														class="btn btn-outline-success btn-sm form-control">search</button>
+												</form>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-9">
+						<div class="row g-2">
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<span class="off bg-success">-25% OFF</span>
+									<div class="text-center">
+										<img src="https://i.imgur.com/nOFet9u.jpg" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>XRD Active Shoes</h5>
+										<span>$1,999.99</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<span class="off bg-warning">SALE</span>
+									<div class="text-center">
+										<img src="https://i.imgur.com/VY0R9aV.png" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Hygen Smart watch</h5>
+										<span>$123.43</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4  mb-2">
+								<div class="product py-4">
+									<div class="text-center">
+										<img src="https://i.imgur.com/PSGrLdz.jpg" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Acer surface book 2.5</h5>
+										<span>$1,999.99</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<span class="off bg-success">-10% OFF</span>
+									<div class="text-center">
+										<img src="https://i.imgur.com/OdRSpXG.jpg" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Dell XPS Surface</h5>
+										<span>$1,245.89</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<!-- <span class="off bg-success">-25% OFF</span> -->
+									<div class="text-center">
+										<img src="https://i.imgur.com/X2AwTCY.jpg" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Acer surface book 5.5</h5>
+										<span>$2,999.99</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<span class="off bg-success">-5% OFF</span>
+									<div class="text-center">
+										<img src="https://i.imgur.com/QQwcBpF.png" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Xps smart watch 5.0</h5>
+										<span>$999.99</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<span class="off bg-warning">SALE</span>
+									<div class="text-center">
+										<img src="https://i.imgur.com/PSGrLdz.jpg" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Acer surface book 8.5</h5>
+										<span>$3,999.99</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<div class="text-center">
+										<img src="https://i.imgur.com/m22OQy9.jpg" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Tyko Running shoes</h5>
+										<span>$99.99</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4 mb-2">
+								<div class="product py-4">
+									<div class="text-center">
+										<img src="https://i.imgur.com/OdRSpXG.jpg" width="200">
+									</div>
+									<div class="about text-center">
+										<h5>Dell surface book 5</h5>
+										<span>$1,999.99</span>
+									</div>
+									<div
+										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
+										<button class="btn btn-primary text-uppercase">Add to
+											cart</button>
+										<div class="add">
+											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<span class="product_fav"><i class="fab fa-opencart"></i></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="line"></div>
+		</div>
+	</div>
+	<!-- Bootstrap JS & jQuery -->
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Popper.JS -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+		integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="api/ajaxFetch.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
+</body>
+</html>
