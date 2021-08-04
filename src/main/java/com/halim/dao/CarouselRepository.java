@@ -1,8 +1,8 @@
-package com.halim.web.dto;
+package com.halim.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.halim.web.model.Carousel;
+import com.halim.model.Carousel;
 
 public interface CarouselRepository extends JpaRepository<Carousel, Long> {
 

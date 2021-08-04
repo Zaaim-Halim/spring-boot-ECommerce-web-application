@@ -1,52 +1,44 @@
-package com.halim.web.model;
+package com.halim.model;
 
-import java.util.Set;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
 
 import com.sun.istack.NotNull;
 
 @Entity
-public class Category {
+public class Carousel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@NotNull
-	private String name;
-	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
-	private Set<Product> products ;
-	public Category() {
-		
-	}
-	public Category(Long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
+	@Lob
+	@Column(columnDefinition = "MEDIUMBLOB")
+	private String image;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getImage() {
+		return image;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setImage(String image) {
+		this.image = image;
+	}
+	@Override
+	public String toString() {
+		return "Carousel [id=" + id + ", image=" + image + "]";
 	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 	@Override
@@ -57,19 +49,13 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Carousel other = (Carousel) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
 		return true;
 	}
 	
-
 }

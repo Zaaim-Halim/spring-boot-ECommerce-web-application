@@ -24,9 +24,20 @@
 }
 
 .cart-button button {
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
     background-color: #5629c0;
+    height: 38px
+}
+
+.checkout .back{
+	  font-size: 14px;
+    color: #fff;
+    height: 38px
+}
+.back{
+	  font-size: 14px;
+
     height: 38px
 }
 

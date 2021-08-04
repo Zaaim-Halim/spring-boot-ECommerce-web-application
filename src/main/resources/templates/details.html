@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>E-commerce application</title>
-
+<base  href="/" >
 <!-- Bootstrap CSS  & FontAwsome-->
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="font-awesome/css1/all.css" rel="stylesheet">
@@ -254,7 +254,6 @@
 															<input type="number" class="form-control-sm input-filter"
 																name="price" placeholder="price" />
 														</div>
-
 													</div>
 													<button type="submit"
 														class="btn btn-outline-success btn-sm form-control">search</button>
@@ -269,272 +268,97 @@
 					</div>
 
 					<div class="col-md-9">
+
 						<div class="row g-2">
+						
+						
+						
+						
+							<div class="col-md-6">
+								<div id="carouselExampleControls" class="carousel slide"
+									data-ride="carousel">
+									<div class="carousel-inner">
+										<div class="carousel-item active">
+											<img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
+							                    alt=""
+												class="d-block w-100" >
+										</div>
+										<div class="carousel-item" th:each="carousel : ${product.carousel}">
+											<img th:src="*{'data:image/jpeg;base64,'+{carousel.image}}"
+												class="d-block w-100" alt="...">
+										</div>
+										
+									</div>
+									<a class="carousel-control-prev"
+										href="#carouselExampleControls" role="button"
+										data-slide="prev"> <span
+										class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next"
+										href="#carouselExampleControls" role="button"
+										data-slide="next"> <span
+										class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
+								</div>
+							</div>
+							<div class="col-md-6">
 
-							<div class="col-md-4 mb-2" th:each="product : ${products}">
-								<div class="product py-4">
-									<span class="off bg-success">-
-										[[${product.discount.discount}]]% OFF</span>
-									<div class="text-center">
-										<img th:src="*{'data:image/jpeg;base64,'+{product.image}}"
-											width="200">
-									</div>
-									<div class="about text-center">
-										<h5>[[${product.name}]]</h5>
-										<span>$[[${product.price}]]</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase"  data-toggle="modal" th:attr="data-target='#exampleModalCenter'+*{product.id}">Add to
-											cart</button>
+								<h4 class="font-bold m-b-xs">[[${product.name}]]</h4>
 
-										<!-- Modal -->
-										<div class="modal fade" th:id="*{'exampleModalCenter'+{product.id}}"
-											data-backdrop="static" data-keyboard="false" tabindex="-1"
-											aria-labelledby="staticBackdropLabel" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="staticBackdropLabel">add to cart</h5>
-														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<div class="modal-body">
-													
-														<div class="card" >
-															<img th:src="*{'data:image/jpeg;base64,'+{product.image}}" height="250px" class="card-img-top" alt="...">
-															<div class="card-body">
-															 <form action="/addToCart" method="POSt">
-															 <input type="hidden" name="id" th:value="${product.id}"/>
-															  <input type="number" min="1" value="1" name="quantity" class="form-control" placeholder="quantity" />
-															  <button type="submit" class="btn btn-primary mt-2"> submit</button>
-															 </form>
-															</div>
-														</div>
-													</div>
+								<div class="m-t-md">
+									<h5 class="product-main-price">
+										$[[${product.price}]] <small class="text-muted"> -[[${product.discount.discount}]]%</small>
+									</h5>
+								</div>
+								<hr>
 
-												</div>
-											</div>
-										</div>
+								<h5>Product description</h5>
 
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<a th:href="@{/detail/{id}(id = ${product.id})}"
-												class="product_fav"><i class="fab fa-opencart"></i></a>
-										</div>
-									</div>
+								<div class="small text-muted">
+									[[${product.description}]]
 								</div>
-							</div>
+<!-- 								<dl class="small m-t-md"> -->
+<!-- 									<dt>Description lists</dt> -->
+<!-- 									<dd>A description list is perfect for defining terms.</dd> -->
+<!-- 									<dt>Euismod</dt> -->
+<!-- 									<dd>Vestibulum id ligula porta felis euismod semper eget -->
+<!-- 										lacinia odio sem nec elit.</dd> -->
 
+<!-- 								</dl> -->
+								<hr>
 
+								<div>
+									<div class="cart-button">
+										<button class="btn btn-primary btn-sm  button">
+											<i class="fa fa-cart-plus"></i> Add to cart
+										</button>
+										<button class="btn btn-primary btn-sm  button ml-2 mr-2">
+											<i class="fa fa-heart"></i> Add to wishlist
+										</button>
+									
+									</div>
+								</div>
 
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<span class="off bg-success">-25% OFF</span>
-									<div class="text-center">
-										<img src="https://i.imgur.com/nOFet9u.jpg" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>XRD Active Shoes</h5>
-										<span>$1,999.99</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<span class="off bg-warning">SALE</span>
-									<div class="text-center">
-										<img src="https://i.imgur.com/VY0R9aV.png" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Hygen Smart watch</h5>
-										<span>$123.43</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4  mb-2">
-								<div class="product py-4">
-									<div class="text-center">
-										<img src="https://i.imgur.com/PSGrLdz.jpg" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Acer surface book 2.5</h5>
-										<span>$1,999.99</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<span class="off bg-success">-10% OFF</span>
-									<div class="text-center">
-										<img src="https://i.imgur.com/OdRSpXG.jpg" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Dell XPS Surface</h5>
-										<span>$1,245.89</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<!-- <span class="off bg-success">-25% OFF</span> -->
-									<div class="text-center">
-										<img src="https://i.imgur.com/X2AwTCY.jpg" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Acer surface book 5.5</h5>
-										<span>$2,999.99</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<span class="off bg-success">-5% OFF</span>
-									<div class="text-center">
-										<img src="https://i.imgur.com/QQwcBpF.png" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Xps smart watch 5.0</h5>
-										<span>$999.99</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<span class="off bg-warning">SALE</span>
-									<div class="text-center">
-										<img src="https://i.imgur.com/PSGrLdz.jpg" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Acer surface book 8.5</h5>
-										<span>$3,999.99</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<div class="text-center">
-										<img src="https://i.imgur.com/m22OQy9.jpg" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Tyko Running shoes</h5>
-										<span>$99.99</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4 mb-2">
-								<div class="product py-4">
-									<div class="text-center">
-										<img src="https://i.imgur.com/OdRSpXG.jpg" width="200">
-									</div>
-									<div class="about text-center">
-										<h5>Dell surface book 5</h5>
-										<span>$1,999.99</span>
-									</div>
-									<div
-										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase">Add to
-											cart</button>
-										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
-											<span class="product_fav"><i class="fab fa-opencart"></i></span>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
-
+				<div class="line"></div>
 			</div>
-			<div class="line"></div>
 		</div>
-	</div>
-	<!-- Bootstrap JS & jQuery -->
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<!-- Popper.JS -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-		integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="api/ajaxFetch.js"></script>
+		<!-- Bootstrap JS & jQuery -->
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<!-- Popper.JS -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+			integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+			crossorigin="anonymous"></script>
+		<script type="text/javascript" src="api/ajaxFetch.js"></script>
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 		$(document).ready(function() {
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
