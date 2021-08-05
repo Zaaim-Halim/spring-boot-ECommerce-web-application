@@ -70,4 +70,32 @@ public class ShoppingCartService {
 		return  shoppingCartRepository.findBySessionToken(sessionToken);
 	}
 
+	public CartItem updateShoppingCartItem(Long id, int quantity) {
+		CartItem cartItem = cartItemRepository.findById(id).get();
+		cartItem.setQuantity(quantity);
+		return cartItemRepository.saveAndFlush(cartItem);
+		
+	}
+
+	public ShoppingCart removeCartIemFromShoppingCart(Long id, String sessionToken) {
+		ShoppingCart shoppingCart = shoppingCartRepository.findBySessionToken(sessionToken);
+		Set<CartItem> items = shoppingCart.getItems();
+		CartItem cartItem = null;
+		for(CartItem item : items) {
+			if(item.getId()==id) {
+				cartItem = item;
+			}
+		}
+		items.remove(cartItem);
+		cartItemRepository.delete(cartItem);
+	    shoppingCart.setItems(items);
+	    return shoppingCartRepository.save(shoppingCart);
+	}
+
+	public void clearShoppingCart(String sessionToken) {
+		ShoppingCart sh = shoppingCartRepository.findBySessionToken(sessionToken);
+		shoppingCartRepository.delete(sh);
+		
+	}
+
 }

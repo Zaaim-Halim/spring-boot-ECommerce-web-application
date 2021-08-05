@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlAttachmentRef;
 
 import com.sun.istack.NotNull;
 
@@ -18,7 +21,17 @@ public class Category {
 	private Long id;
 	@NotNull
 	private String name;
-	
+	@Transient
+	private int productsNumber;
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+	public int getProductsNumber() {
+		return this.products.size();
+	}
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
 	private Set<Product> products ;
 	public Category() {

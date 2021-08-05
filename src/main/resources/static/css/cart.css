@@ -12,6 +12,10 @@ select.form-control {
 .form-control:not(textarea) {
     height: 44px;
 }
+.btn-custom{
+	border-bottom-right-radius: 22px;
+	border-top-right-radius: 22px;
+}
 .form-control {
     padding: 0 18px 3px;
     border: 1px solid #dbe2e8;

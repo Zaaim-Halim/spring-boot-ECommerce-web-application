@@ -59,7 +59,7 @@
 
 		<!-- Page Content  -->
 		<div id="content">
-			<nav th:fragment="sidebar"
+			<nav  th:fragment="topBar"
 				class="navbar navbar-expand-lg navbar-light"
 				style="border-bottom: 4px solid #7386D5;">
 				<div class="container-fluid">
@@ -82,9 +82,9 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link fl1" href="#"> <i
+							<li class="nav-item"><a class="nav-link fl1" th:href="@{/shoppingCart}"> <i
 									class="fas fa-cart-plus" title="View Cart"
-									style="color: red; font-size: 20px"></i><span class="label">10</span>
+									style="color: red; font-size: 20px"></i><span class="label">[[${shoppingCart.itemsNumber}]]</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link fl2" href="#"> <i
 									class="fa fa-user" style="color: #17a2b8; font-size: 20px"></i>
@@ -96,9 +96,10 @@
 			</nav>
 			<div class="line"></div>
 			<div class="container" id="app">
-
 				<div class="row g-2">
-					<div class="col-md-3">
+				
+				
+					<div class="col-md-3" th:fragment="generalSection">
 						<div class="accordion" id="accordionExample">
 							<div class="card">
 								<div class="card-header" id="headingOne">
@@ -116,30 +117,10 @@
 									<div class="card-body category">
 										<div class="t-products p-2">
 											<div class="p-lists">
-												<div class="d-flex justify-content-between mt-2">
-													<span>Laptops</span> <span>23</span>
+												<div class="d-flex justify-content-between mt-2" th:each="category : ${categories}">
+													<span>[[${category.name}]]</span> <span>[[${category.productsNumber}]]</span>
 												</div>
-												<div class="d-flex justify-content-between mt-2">
-													<span>Desktops</span> <span>46</span>
-												</div>
-												<div class="d-flex justify-content-between mt-2">
-													<span>Monitors</span> <span>13</span>
-												</div>
-												<div class="d-flex justify-content-between mt-2">
-													<span>Mouse</span> <span>33</span>
-												</div>
-												<div class="d-flex justify-content-between mt-2">
-													<span>Keyboard</span> <span>12</span>
-												</div>
-												<div class="d-flex justify-content-between mt-2">
-													<span>Printer</span> <span>53</span>
-												</div>
-												<div class="d-flex justify-content-between mt-2">
-													<span>Mobiles</span> <span>203</span>
-												</div>
-												<div class="d-flex justify-content-between mt-2">
-													<span>CPU</span> <span>23</span>
-												</div>
+											
 											</div>
 										</div>
 

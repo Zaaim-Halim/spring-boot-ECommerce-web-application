@@ -33,7 +33,7 @@ public class ShoppingCart {
 	private int itemsNumber;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER )
-	private Set<CartItem> items = new HashSet<CartItem>();;
+	private Set<CartItem> items = new HashSet<CartItem>();
 	
 	public ShoppingCart() {
 	}
