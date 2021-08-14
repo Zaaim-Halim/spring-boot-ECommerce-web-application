@@ -206,5 +206,10 @@ public class ProductService {
 		
 		return productRepo.findById(id).get();
 	}
+	public List<Product> searchProductByNameLike(String value) {
+		
+		return productRepo.findByNameContainingIgnoreCase(value);
+	}
+	
 	
 }

@@ -20,7 +20,7 @@ public class GeneralController {
 	
 	@ModelAttribute
 	public void populateModel(Model model, HttpServletRequest request) {
-		String sessionToken = (String) request.getSession(false).getAttribute("sessiontToken");
+		String sessionToken = (String) request.getSession(true).getAttribute("sessiontToken");
 		if(sessionToken == null) {
 			model.addAttribute("shoppingCart", new ShoppingCart());
 		}

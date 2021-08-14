@@ -69,9 +69,15 @@
 						<!-- <span>Toggle Sidebar</span> -->
 					</button>
 					<form class="form-inline frm">
-						<input class="form-control mr-sm-2" type="search"
+						<input class="form-control mr-sm-2" type="search" value="" id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
 							placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+							
+							<div class="dropdown-menu ropdown-menu-right ml-4" id="dropdown-container">
+							  
+						    </div>
+						<!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+
+			
 					</form>
 					<button class="btn btn-light d-inline-block d-lg-none ml-auto"
 						type="button" data-toggle="collapse"
@@ -520,7 +526,35 @@
 			$('#sidebarCollapse').on('click', function() {
 				$('#sidebar').toggleClass('active');
 			});
+			
 		});
+		function dropDown(event){
+		    var val = $("#search").val();
+		    if(val.length > 1){
+		    	$.ajax({
+		            type: "GET",
+		            url: "/search?value="+val,
+		            processData: false,// prevent jQuery from automatically
+		            // transforming the data into a query string
+		            contentType: false,
+		            cache: false,
+		            timeout: 6000,
+		            success: function (data) {
+		            	$('.dropdown-toggle').dropdown();
+		            	$("#dropdown-container").empty();
+		            	$("#dropdown-container").append(data);
+		            	
+		            },
+		    	  error: function (e) {
+
+		              console.log("ERROR : ", e);
+		             
+		          }
+		      });
+		    	
+		    }
+			
+		}
 	</script>
 </body>
 </html>
