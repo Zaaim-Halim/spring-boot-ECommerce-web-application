@@ -34,11 +34,10 @@ public class ShoppingCart {
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER )
 	private Set<CartItem> items = new HashSet<CartItem>();
+	private String sessionToken; 
 	
 	public ShoppingCart() {
 	}
-
-	private String sessionToken;
 
 	public Long getId() {
 		return id;

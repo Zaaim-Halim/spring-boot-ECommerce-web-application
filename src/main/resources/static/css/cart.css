@@ -9,14 +9,12 @@ select.form-control {
     background-repeat: no-repeat;
     background-size: 9px 9px;
 }
-.form-control:not(textarea) {
-    height: 44px;
-}
+
 .btn-custom{
 	border-bottom-right-radius: 22px;
 	border-top-right-radius: 22px;
 }
-.form-control {
+.round-input {
     padding: 0 18px 3px;
     border: 1px solid #dbe2e8;
     border-radius: 22px;
@@ -221,15 +219,13 @@ select.form-control {
         margin: 12px 0 !important
     }
 }
-
+.btn-left {
+	float: left;
+}
 .coupon-form .form-control {
     display: inline-block;
     width: 100%;
     max-width: 235px;
     margin-right: 12px;
-}
-
-.form-control-sm:not(textarea) {
-    height: 36px;
 }
 

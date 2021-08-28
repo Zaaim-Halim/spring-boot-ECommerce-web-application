@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.halim.dao.CategoryRepository;
+import com.halim.dao.CouponRepository;
 import com.halim.dao.ProductRepositry;
 import com.halim.model.Carousel;
 import com.halim.model.Category;
@@ -29,6 +30,8 @@ public class ProductService {
 	private ProductRepositry productRepo;
 	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
+	private CouponRepository couponRepository;
 	
 	public void  saveProductToDB(MultipartFile file,String name,String description,int quantity
 			,Double price,String brand, String categories)
@@ -209,6 +212,24 @@ public class ProductService {
 	public List<Product> searchProductByNameLike(String value) {
 		
 		return productRepo.findByNameContainingIgnoreCase(value);
+	}
+	
+	
+	public List<String> getAllBrands() {
+		// TODO Auto-generated method stub
+		return productRepo.findAllBrandsDistincts();
+	}
+	public Product getProductWithBigestDiscount() {
+		Coupon discount = couponRepository.findMax();
+		List<Product> products = productRepo.findAll();
+		Product featuredProduct = null;
+		for(Product p : products) {
+			if(p.getDiscount().equals(discount)) {
+				featuredProduct = p;
+				break;
+			}
+		}
+		return featuredProduct;
 	}
 	
 	

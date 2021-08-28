@@ -18,9 +18,6 @@
 <link rel="stylesheet" href="style4.css">
 <link rel="stylesheet" href="cart.css">
 <link rel="stylesheet" href="card.css">
-<script type="text/javascript" src="font-awesome/js1/fontawesome.js"></script>
-<script type="text/javascript" src=""></script>
-
 </head>
 <body>
 	<div class="wrapper">
@@ -60,97 +57,223 @@
 
 		<!-- Page Content  -->
 		<div id="content">
-			<nav th:replace="index :: topBar">
-				
-			</nav>
+			<nav th:replace="index :: topBar"></nav>
 			<div class="line"></div>
 			<div class="container" id="app">
 
 				<div class="row g-2">
-					<div class="col-md-3" th:replace="index :: generalSection">
-						
-					</div>
+					<div class="col-md-3" th:replace="index :: generalSection"></div>
 
 					<div class="col-md-9">
-						<div class="row g-2">
+						<div class="card">
+							<div class="card-header">
 
-							<div class="table-responsive shopping-cart" style="background-color: #fff">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Product</th>
-											<th class="text-center">Quantity</th>
-											<th class="text-center">Subtotal</th>
-											<th class="text-center">Discount</th>
-											<th class="text-center"><a
-												class="btn btn-sm btn-outline-danger clear" th:href="@{/clearShoppingCart}">Clear
-													</a></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="cartItem : ${shoppingCart.items}">
-											<td>
-												<div class="product-item">
-													<a class="product-thumb" href="#"><img
-														th:src="*{'data:image/jpeg;base64,'+{cartItem.product.image}}"
-														alt="Product"></a>
-													<div class="product-info">
-														<h4 class="product-title">
-															<a href="#">[[${cartItem.product.name}]]</a>
-														</h4>
-														<span><em>Price:</em>$[[${cartItem.product.price}]] </span>
-															
-													</div>
-												</div>
-											</td>
-											<td class="text-center">
-											<form action="/updateShoppingCart" method="post">
-											<input type="hidden" th:value="${cartItem.id}" name="item_id"/>
-												<div class="input-group">
-													<input type="number" name="quantity" th:value="${cartItem.quantity}" th:attr="max=${cartItem.product.quantity}"
-													 class="form-control form-control-sm"/>
-													 <button class="btn btn-success btn-sm btn-custom" type="submit"><i class="fa fa-check"></i></button>
-												</div>
-												</form>
-											</td>
-											<td class="text-center text-lg text-medium">$[[${cartItem.product.price * cartItem.quantity}]]</td>
-											<td class="text-center text-lg text-medium">$[[${cartItem.product.discount.discount}]]</td>
-											<td class="text-center"><a class="remove-from-cart"
-												th:href="@{/removeCartItem/{id}(id = ${cartItem.id})}" data-toggle="tooltip"
-												><i class="fa fa-trash"></i></a></td>
-										</tr>
-										
-									</tbody>
-								</table>
-							</div>
-							<div class="shopping-cart-footer">
-								<div class="column">
-									<form class="coupon-form" method="post">
-										<input class="form-control form-control-sm" type="text"
-											placeholder="Coupon code" required="">
-										<button class="btn btn-outline-primary btn-sm" type="submit">Apply
-											Coupon</button>
-									</form>
-								</div>
-								<div class="column text-lg">
-									<b>Subtotal:  <span class="text-medium">$[[${shoppingCart.totalPrice}]]</span></b>
-								</div>
-							</div>
-							<div class="shopping-cart-footer">
-								<div class="column">
-									<a class="btn btn-outline-secondary back" href="/"><i
-										class="fas fa-arrow-left"></i>&nbsp;Back to Shopping</a>
-								</div>
-								<div class="column cart-button">
-									<!-- <button class="btn btn-primary" href="#" data-toast=""
-										data-toast-type="success" data-toast-position="topRight"
-										data-toast-icon="icon-circle-check"
-										data-toast-title="Your cart"
-										data-toast-message="is updated successfully!">Update Cart</button> -->
-										<a class="btn checkout btn-success" href="#">Checkout</a>
-								</div>
-							</div>
+								<div class="tab">
+									<button class="tablinks" onclick="openTab(event, 'cart')"
+										id="defaultOpen">
+										<i class="fas fa-cart-plus" title="View Cart"
+											style="color: #5629c0; font-size: 20px"></i>
+									</button>
+									<button class="tablinks" onclick="openTab(event, 'wishlist')">
+										<i class="fas fa-heart"
+											style="color: #5629c0; font-size: 20px"></i>
+									</button>
 
+
+								</div>
+							</div>
+							<div class="card-body">
+
+								<div id="cart" class="tabcontent">
+									<div class="col-12">
+										<div class="row">
+
+											<div class=" table-responsive shopping-cart"
+												style="background-color: #fff">
+												<table class="table">
+													<thead>
+														<tr>
+															<th>Product</th>
+															<th class="text-center">Quantity</th>
+															<th class="text-center">Subtotal</th>
+															<th class="text-center">Discount</th>
+															<th class="text-center"><a
+																class="btn btn-sm btn-outline-danger clear"
+																th:href="@{/clearShoppingCart}">Clear </a></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="cartItem : ${shoppingCart.items}">
+															<td>
+																<div class="product-item">
+																	<a class="product-thumb" href="#"><img
+																		th:src="*{'data:image/jpeg;base64,'+{cartItem.product.image}}"
+																		alt="Product"></a>
+																	<div class="product-info">
+																		<h4 class="product-title">
+																			<a href="#">[[${cartItem.product.name}]]</a>
+																		</h4>
+																		<span><em>Price:</em>$[[${cartItem.product.price}]]
+																		</span>
+
+																	</div>
+																</div>
+															</td>
+															<td class="text-center">
+																<form action="/updateShoppingCart" method="post">
+																	<input type="hidden" th:value="${cartItem.id}"
+																		name="item_id" />
+																	<div class="input-group">
+																		<input type="number" name="quantity"
+																			th:value="${cartItem.quantity}"
+																			th:attr="max=${cartItem.product.quantity}"
+																			class="form-control round-input form-control-sm" />
+																		<button class="btn btn-success btn-sm btn-custom"
+																			type="submit">
+																			<i class="fa fa-check"></i>
+																		</button>
+																	</div>
+																</form>
+															</td>
+															<td class="text-center text-lg text-medium">$[[${cartItem.product.price
+																* cartItem.quantity}]]</td>
+															<td class="text-center text-lg text-medium">$[[${cartItem.product.discount.discount}]]</td>
+															<td class="text-center"><a class="remove-from-cart"
+																th:href="@{/removeCartItem/{id}(id = ${cartItem.id})}"
+																data-toggle="tooltip"><i
+																	class="fa fa-trash"></i></a></td>
+														</tr>
+
+													</tbody>
+												</table>
+											</div>
+											<div class="shopping-cart-footer">
+												<div class="column">
+													<form class="coupon-form" method="post">
+														<input class="form-control round-input form-control-sm" type="text"
+															placeholder="Coupon code" required="">
+														<button class="btn btn-outline-primary btn-sm"
+															type="submit">Apply Coupon</button>
+													</form>
+												</div>
+												<div class="column text-lg">
+													<b>Subtotal: <span class="text-medium">$[[${shoppingCart.totalPrice}]]</span></b>
+												</div>
+											</div>
+											<div class="shopping-cart-footer">
+												<div class="column">
+													<a class="btn btn-outline-secondary back" href="/"><i
+														class="fas fa-arrow-left"></i>&nbsp;Back to Shopping</a>
+												</div>
+												<div class="column cart-button">
+													
+													<a class="btn checkout btn-success" href="#">Checkout</a>
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+                               <!-- ------------------- WishList  --------------------------->
+                               
+								<div id="wishlist" class="tabcontent">
+									<div class="col-12">
+										<div class="row">
+											<div class="cart-button table-responsive shopping-cart"
+												style="background-color: #fff">
+												<table class="table">
+													<thead>
+														<tr>
+															<th>Product</th>
+
+															<th class="text-center">add to cart</th>
+
+															<th class="text-center"><a
+																class="btn btn-sm btn-outline-danger clear"
+																th:href="@{/clearWishList}">Clear </a></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="item : ${whishList.items}">
+															<td>
+																<div class="product-item">
+																	<a class="product-thumb" href="#"><img
+																		th:src="*{'data:image/jpeg;base64,'+{item.product.image}}"
+																		alt="Product"></a>
+																	<div class="product-info">
+																		<h4 class="product-title">
+																			<a href="#">[[${item.product.name}]]</a>
+																		</h4>
+																		<span><em>Price:</em>$[[${item.product.price}]]
+																		</span>
+
+																	</div>
+																</div>
+															</td>
+
+															<td class="text-center">
+																<button class="btn  text-uppercase" style="background-color:#fff !important;"
+																	data-toggle="modal"
+																	th:attr="data-target='#exampleModalCenter'+*{item.product.id}">
+																	<i class="fas fa-cart-plus" style="color: #5629c0; font-size: 20px"></i>
+																</button> <!-- Modal -->
+																<div class="modal fade"
+																	th:id="*{'exampleModalCenter'+{item.product.id}}"
+																	data-backdrop="static" data-keyboard="false"
+																	tabindex="-1" aria-labelledby="staticBackdropLabel"
+																	aria-hidden="true">
+																	<div class="modal-dialog modal-dialog-centered">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<h5 class="modal-title" id="staticBackdropLabel">add
+																					to cart</h5>
+																				<button type="button" class="close"
+																					data-dismiss="modal" aria-label="Close">
+																					<span aria-hidden="true">&times;</span>
+																				</button>
+																			</div>
+																			<div class="modal-body">
+
+																				<div class="card">
+																					<img
+																						th:src="*{'data:image/jpeg;base64,'+{item.product.image}}"
+																						height="250px" class="card-img-top" alt="...">
+																					<div class="card-body">
+																						<form action="/addToCart" method="POSt">
+																							<input type="hidden" name="id"
+																								th:value="${item.product.id}" /> <input type="number"
+																								min="1" value="1" name="quantity"
+																								class="form-control" placeholder="quantity" />
+																							
+																							<button type="submit"
+																								class="btn btn-primary btn-left btn-sm mt-2">submit</button>
+																								
+																						</form>
+																					</div>
+																				</div>
+																			</div>
+
+																		</div>
+																	</div>
+																</div>
+
+															</td>
+															<td class="text-center"><a class="remove-from-cart"
+																th:href="@{/removeWishListItem/{id}(id = ${item.id})}"
+																data-toggle="tooltip"><i
+																	class="fa fa-trash"></i></a></td>
+														</tr>
+
+													</tbody>
+												</table>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+
+							</div>
 						</div>
 					</div>
 
@@ -158,10 +281,12 @@
 				<div class="line"></div>
 			</div>
 		</div>
+		</div>
 		<!-- Bootstrap JS & jQuery -->
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<!-- Popper.JS -->
+		<script type="text/javascript" src="font-awesome/js1/fontawesome.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
 			integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
@@ -169,11 +294,31 @@
 		<script type="text/javascript" src="api/ajaxFetch.js"></script>
 
 		<script type="text/javascript">
-		$(document).ready(function() {
-			$('#sidebarCollapse').on('click', function() {
-				$('#sidebar').toggleClass('active');
+			$(document).ready(function() {
+				$('#sidebarCollapse').on('click', function() {
+					$('#sidebar').toggleClass('active');
+				});
 			});
-		});
+		</script>
+		<script>
+		function openTab(evt, Name) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(
+						" active", "");
+			}
+			document.getElementById(Name).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
 	</script>
+		<script type="text/javascript" src="api/ajaxFetch.js"></script>
 </body>
 </html>

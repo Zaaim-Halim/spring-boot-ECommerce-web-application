@@ -20,7 +20,7 @@ public class ShoppingCartService {
 	@Autowired
 	private ProductService productService;
 	@Autowired CartItemRepository cartItemRepository;
-
+	
 	public ShoppingCart addShoppingCartFirstTime(Long id, String sessionToken, int quantity) {
 		ShoppingCart shoppingCart = new ShoppingCart();
 		CartItem cartItem = new CartItem();

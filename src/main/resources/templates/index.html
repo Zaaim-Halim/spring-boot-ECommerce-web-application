@@ -59,7 +59,7 @@
 
 		<!-- Page Content  -->
 		<div id="content">
-			<nav  th:fragment="topBar"
+			<nav th:fragment="topBar"
 				class="navbar navbar-expand-lg navbar-light"
 				style="border-bottom: 4px solid #7386D5;">
 				<div class="container-fluid">
@@ -69,15 +69,13 @@
 						<!-- <span>Toggle Sidebar</span> -->
 					</button>
 					<form class="form-inline frm">
-						<input class="form-control mr-sm-2" type="search" value="" id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
+						<input class="form-control mr-sm-2" type="search" value=""
+							id="search" onkeydown="dropDown(event);" data-toggle="dropdown"
 							placeholder="Search" aria-label="Search">
-							
-							<div class="dropdown-menu ropdown-menu-right ml-4" id="dropdown-container">
-							  
-						    </div>
-						<!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
 
-			
+						<div class="dropdown-menu ropdown-menu-right ml-4"
+							id="dropdown-container"></div>
+
 					</form>
 					<button class="btn btn-light d-inline-block d-lg-none ml-auto"
 						type="button" data-toggle="collapse"
@@ -88,9 +86,11 @@
 					</button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link fl1" th:href="@{/shoppingCart}"> <i
-									class="fas fa-cart-plus" title="View Cart"
-									style="color: red; font-size: 20px"></i><span class="label">[[${shoppingCart.itemsNumber}]]</span>
+
+							<li class="nav-item"><a class="nav-link fl1"
+								th:href="@{/shoppingCart}"> <i class="fas fa-cart-plus"
+									title="View Cart" style="color: red; font-size: 20px"></i><span
+									class="label">[[${shoppingCart.itemsNumber}]]</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link fl2" href="#"> <i
 									class="fa fa-user" style="color: #17a2b8; font-size: 20px"></i>
@@ -103,8 +103,8 @@
 			<div class="line"></div>
 			<div class="container" id="app">
 				<div class="row g-2">
-				
-				
+
+
 					<div class="col-md-3" th:fragment="generalSection">
 						<div class="accordion" id="accordionExample">
 							<div class="card">
@@ -123,10 +123,11 @@
 									<div class="card-body category">
 										<div class="t-products p-2">
 											<div class="p-lists">
-												<div class="d-flex justify-content-between mt-2" th:each="category : ${categories}">
+												<div class="d-flex justify-content-between mt-2"
+													th:each="category : ${categories}">
 													<span>[[${category.name}]]</span> <span>[[${category.productsNumber}]]</span>
 												</div>
-											
+
 											</div>
 										</div>
 
@@ -147,51 +148,17 @@
 									aria-labelledby="headingTwo" data-parent="#accordionExample">
 									<div class="card-body category">
 										<div class="brand p-2">
-											<div class="d-flex justify-content-between mt-2">
+											<div th:each="brand : ${brands}"
+												class="d-flex justify-content-between mt-2">
 												<div class="form-check">
 													<input class="form-check-input" type="checkbox" value=""
 														id="flexCheckDefault"> <label
-														class="form-check-label" for="flexCheckDefault">
-														Apple </label>
+														class="form-check-label" for="flexCheckDefault"
+														th:text="${#strings.capitalizeWords(brand)}"> </label>
 												</div>
-												<span>13</span>
+												<!-- <span>13</span> -->
 											</div>
-											<div class="d-flex justify-content-between mt-2">
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value=""
-														id="flexCheckChecked" checked> <label
-														class="form-check-label" for="flexCheckChecked">
-														Asus </label>
-												</div>
-												<span>4</span>
-											</div>
-											<div class="d-flex justify-content-between mt-2">
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value=""
-														id="flexCheckChecked" checked> <label
-														class="form-check-label" for="flexCheckChecked">
-														Dell </label>
-												</div>
-												<span>24</span>
-											</div>
-											<div class="d-flex justify-content-between mt-2">
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value=""
-														id="flexCheckChecked" checked> <label
-														class="form-check-label" for="flexCheckChecked">
-														Lenovo </label>
-												</div>
-												<span>18</span>
-											</div>
-											<div class="d-flex justify-content-between mt-2">
-												<div class="form-check">
-													<input class="form-check-input" type="checkbox" value=""
-														id="flexCheckChecked" checked> <label
-														class="form-check-label" for="flexCheckChecked">
-														Acer </label>
-												</div>
-												<span>44</span>
-											</div>
+
 										</div>
 
 									</div>
@@ -252,6 +219,97 @@
 									</div>
 								</div>
 							</div>
+
+
+							<div class="card mb-2">
+								<div class="card-header" id="headingThree">
+									<h2 class="mb-0">
+										<button
+											class="btn btn-link btn-block text-left text-uppercase"
+											type="button" data-toggle="collapse"
+											data-target="#collapseTfour" aria-expanded="true"
+											aria-controls="collapseTfour">Featured Product</button>
+									</h2>
+								</div>
+								<div id="collapseTfour" class="collapse show"
+									aria-labelledby="headingThree" data-parent="#accordionExample">
+									<div class="card-body" style="padding: 0rem ! important;">
+										<div class="type mb-2">
+
+											<div class=" mt-2">
+
+												<div class="product  mt-2">
+													<span class="off bg-success">-[[${featured.discount.discount}]]%
+														OFF</span>
+													<div class="text-center">
+														<img
+															th:src="${'data:image/jpeg;base64,'+{featured.image}}"
+															width="200">
+													</div>
+													<div class="about text-center">
+														<h5>[[${featured.name}]]</h5>
+														<span>[[${featured.price}]]</span>
+													</div>
+													<div
+														class="cart-button mt-3  d-flex justify-content-between align-items-center">
+														<button class="btn btn-primary text-uppercase"
+															data-toggle="modal"
+															th:attr="data-target='#exampleModalCenterfeatured'+${featured.id}">Add
+															to cart</button>
+														<!-- Modal -->
+														<div class="modal fade"
+															th:id="${'exampleModalCenterfeatured'+{featured.id}}"
+															data-backdrop="static" data-keyboard="false"
+															tabindex="-1" aria-labelledby="staticBackdropLabel"
+															aria-hidden="true">
+															<div class="modal-dialog modal-dialog-centered">
+																<div class="modal-content">
+																	<div class="modal-header">
+																		<h5 class="modal-title" id="staticBackdropLabel">add
+																			to cart</h5>
+																		<button type="button" class="close"
+																			data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<div class="modal-body">
+
+																		<div class="card">
+																			<img
+																				th:src="${'data:image/jpeg;base64,'+{featured.image}}"
+																				height="250px" class="card-img-top" alt="...">
+																			<div class="card-body">
+																				<form action="/addToCart" method="POSt">
+																					<input type="hidden" name="id"
+																						th:value="${featured.id}" /> <input type="number"
+																						min="1" value="1" name="quantity"
+																						class="form-control" placeholder="quantity" />
+																					<button type="submit" class="btn btn-primary mt-2">
+																						submit</button>
+																				</form>
+																			</div>
+																		</div>
+																	</div>
+
+																</div>
+															</div>
+														</div>
+														<div class="add">
+															<span class="product_fav"><i class="fa fa-heart"></i></span>
+															<a th:href="@{/detail/{id}(id = ${featured.id})}"
+																class="product_fav"><i class="fab fa-opencart"></i></a>
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
 
@@ -272,32 +330,40 @@
 									</div>
 									<div
 										class="cart-button mt-3 px-2 d-flex justify-content-between align-items-center">
-										<button class="btn btn-primary text-uppercase"  data-toggle="modal" th:attr="data-target='#exampleModalCenter'+*{product.id}">Add to
-											cart</button>
+										<button class="btn btn-primary text-uppercase"
+											data-toggle="modal"
+											th:attr="data-target='#exampleModalCenter'+*{product.id}">Add
+											to cart</button>
 
 										<!-- Modal -->
-										<div class="modal fade" th:id="*{'exampleModalCenter'+{product.id}}"
+										<div class="modal fade"
+											th:id="*{'exampleModalCenter'+{product.id}}"
 											data-backdrop="static" data-keyboard="false" tabindex="-1"
 											aria-labelledby="staticBackdropLabel" aria-hidden="true">
 											<div class="modal-dialog modal-dialog-centered">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h5 class="modal-title" id="staticBackdropLabel">add to cart</h5>
+														<h5 class="modal-title" id="staticBackdropLabel">add
+															to cart</h5>
 														<button type="button" class="close" data-dismiss="modal"
 															aria-label="Close">
 															<span aria-hidden="true">&times;</span>
 														</button>
 													</div>
 													<div class="modal-body">
-													
-														<div class="card" >
-															<img th:src="*{'data:image/jpeg;base64,'+{product.image}}" height="250px" class="card-img-top" alt="...">
+
+														<div class="card">
+															<img
+																th:src="*{'data:image/jpeg;base64,'+{product.image}}"
+																height="250px" class="card-img-top" alt="...">
 															<div class="card-body">
-															 <form action="/addToCart" method="POSt">
-															 <input type="hidden" name="id" th:value="${product.id}"/>
-															  <input type="number" min="1" value="1" name="quantity" class="form-control" placeholder="quantity" />
-															  <button type="submit" class="btn btn-primary mt-2"> submit</button>
-															 </form>
+																<form action="/addToCart" method="POSt">
+																	<input type="hidden" name="id" th:value="${product.id}" />
+																	<input type="number" min="1" value="1" name="quantity"
+																		class="form-control" placeholder="quantity" />
+																	<button type="submit" class="btn btn-primary mt-2">
+																		submit</button>
+																</form>
 															</div>
 														</div>
 													</div>
@@ -307,15 +373,13 @@
 										</div>
 
 										<div class="add">
-											<span class="product_fav"><i class="fa fa-heart"></i></span>
+											<a th:href="@{/addToWishlist/{id}(id = ${product.id})}" class="product_fav"><i class="fa fa-heart"></i></a>
 											<a th:href="@{/detail/{id}(id = ${product.id})}"
 												class="product_fav"><i class="fab fa-opencart"></i></a>
 										</div>
 									</div>
 								</div>
 							</div>
-
-
 
 							<div class="col-md-4 mb-2">
 								<div class="product py-4">
@@ -528,33 +592,7 @@
 			});
 			
 		});
-		function dropDown(event){
-		    var val = $("#search").val();
-		    if(val.length > 1){
-		    	$.ajax({
-		            type: "GET",
-		            url: "/search?value="+val,
-		            processData: false,// prevent jQuery from automatically
-		            // transforming the data into a query string
-		            contentType: false,
-		            cache: false,
-		            timeout: 6000,
-		            success: function (data) {
-		            	$('.dropdown-toggle').dropdown();
-		            	$("#dropdown-container").empty();
-		            	$("#dropdown-container").append(data);
-		            	
-		            },
-		    	  error: function (e) {
-
-		              console.log("ERROR : ", e);
-		             
-		          }
-		      });
-		    	
-		    }
-			
-		}
+		
 	</script>
 </body>
 </html>

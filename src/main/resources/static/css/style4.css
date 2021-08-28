@@ -288,10 +288,10 @@ a.article:hover {
 .label{
 	background-color: #FFC107 !important;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 35px;
     font-size: 10px;
     margin-top: -11px;
-    margin-left: -50px;
+    margin-left: -40px;
     position: absolute;
     padding: 4px 8px;
     line-height: 7px;
