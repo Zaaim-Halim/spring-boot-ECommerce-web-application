@@ -1,15 +1,16 @@
 package com.halim.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Transient;
+import org.antlr.v4.runtime.misc.NotNull;
+
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
-import com.sun.istack.NotNull;
 
 @Entity
 public class Category {
@@ -74,12 +75,9 @@ public class Category {
 		} else if (!id.equals(other.id))
 			return false;
 		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
-	}
+            return other.name == null;
+		} else return name.equals(other.name);
+    }
 	
 
 }

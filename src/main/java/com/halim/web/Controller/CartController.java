@@ -1,9 +1,7 @@
 package com.halim.web.Controller;
 
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.halim.web.service.ShoppingCartService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.halim.web.service.ShoppingCartService;
+import java.util.UUID;
 
 @Controller
 public class CartController {
@@ -22,7 +20,7 @@ public class CartController {
 
 	@PostMapping("/addToCart")
 	public String addToCart(HttpServletRequest request, Model model, @RequestParam("id") Long id,
-			@RequestParam("quantity") int quantity) {
+							@RequestParam("quantity") int quantity) {
 
 		// sessiontToken
 		String sessionToken = (String) request.getSession(true).getAttribute("sessiontToken");

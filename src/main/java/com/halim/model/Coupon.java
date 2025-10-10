@@ -1,10 +1,10 @@
 package com.halim.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Coupon {
@@ -27,10 +27,8 @@ public class Coupon {
 		this.discount = discount;
 	}
 	public boolean isDicount() {
-		if(this.discount != 0)
-			return true;
-		return false;
-	}
+        return this.discount != 0;
+    }
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -51,12 +49,9 @@ public class Coupon {
 		if (discount != other.discount)
 			return false;
 		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+            return other.id == null;
+		} else return id.equals(other.id);
+    }
 	
 	
 }

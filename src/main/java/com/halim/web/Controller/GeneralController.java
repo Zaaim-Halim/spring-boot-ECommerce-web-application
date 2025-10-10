@@ -1,17 +1,15 @@
 package com.halim.web.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import com.halim.model.ShoppingCart;
 import com.halim.model.WishList;
 import com.halim.web.service.ProductService;
 import com.halim.web.service.ShoppingCartService;
 import com.halim.web.service.WishListService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @ControllerAdvice
 public class GeneralController {
